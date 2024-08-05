@@ -1,7 +1,6 @@
-import * as React from "react";
-import { ReactNode } from "react";
+import React, { useState, ReactNode, CSSProperties } from "react";
+// import '../styles/Navbar.css';  
 import '../styles/Navbar.css';
-
 type LinkType = {
   label: string;
   href: string;
@@ -16,62 +15,47 @@ type NavbarPropsType = {
   logo: ReactNode;
   links: LinkType[];
   dropdowns?: DropdownType[];
+  backgroundColor?: string;
+  textColor?: string;
 };
 
-const Navbar = ({ logo, links, dropdowns }: NavbarPropsType) => {
+const Navbar = ({
+  logo,
+  links,
+  dropdowns,
+  backgroundColor,
+  textColor
+}: NavbarPropsType) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const navStyles: CSSProperties = {
+    backgroundColor: backgroundColor,
+    color: textColor
+  };
+
   return (
-    <nav className="nav">
-      <div>{logo}</div>
-      <div style={{ display: "flex", alignItems: "center" }}>
+    <nav className="nav" style={navStyles}>
+      <div className="nav-logo">{logo}</div>
+      <button className="nav-toggle" onClick={toggleMenu} style={{ color: textColor }}>
+        ☰
+      </button>
+      <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
         {links.map((link, index) => (
-          <a
-            key={index}
-            href={link.href}
-            style={{
-              color: "white",
-              textDecoration: "none",
-              padding: "0 10px",
-            }}
-          >
+          <a key={index} href={link.href} className="nav-link" style={{ color: textColor }}>
             {link.label}
           </a>
         ))}
         {dropdowns &&
           dropdowns.map((dropdown, index) => (
-            <div key={index} style={{ position: "relative", padding: "0 10px" }}>
-              <button
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: "white",
-                  cursor: "pointer",
-                  fontSize: "inherit",
-                }}
-              >
-                {dropdown.label}
-              </button>
-              <div
-                style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 0,
-                  backgroundColor: "#444",
-                  padding: "10px 0",
-                  display: "none",
-                  flexDirection: "column",
-                }}
-              >
+            <div key={index} className="nav-dropdown">
+              <button className="nav-dropdown-toggle" style={{ color: textColor }}>{dropdown.label}</button>
+              <div className="nav-dropdown-menu" style={{ backgroundColor: backgroundColor }}>
                 {dropdown.items.map((item, idx) => (
-                  <a
-                    key={idx}
-                    href={item.href}
-                    style={{
-                      color: "white",
-                      textDecoration: "none",
-                      padding: "5px 20px",
-                      display: "block",
-                    }}
-                  >
+                  <a key={idx} href={item.href} className="nav-dropdown-item" style={{ color: textColor }}>
                     {item.label}
                   </a>
                 ))}

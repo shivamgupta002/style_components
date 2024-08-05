@@ -5,6 +5,7 @@
     "jsx": "react",
     "declaration": true,
     "declarationDir": "dist",
-    "strict": true
+    "strict": true, 
+    "allowSyntheticDefaultImports": true
     }
 }
