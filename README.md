@@ -9,13 +9,13 @@ To install the package, run:
 ```bash
 npm install styling-with-shivam
 
-Components
+## Components
+
 Button
 A customizable button component.
 
-Usage
-jsx
-Copy code
+## Usage
+
 import React from "react";
 import { Button } from "my-react-components-package";
 
@@ -28,14 +28,15 @@ const App = () => {
 };
 
 export default App;
-Props
+
+## Props
+
 children: The content inside the button.
 Navbar
 A flexible navbar component that supports links, logos, and dropdown menus.
 
-Usage
-jsx
-Copy code
+## Usage
+
 import React from "react";
 import { Navbar } from "my-react-components-package";
 
