@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ReactNode } from "react";
+import '../styles/Navbar.css';
 
 type LinkType = {
   label: string;
@@ -19,16 +20,7 @@ type NavbarPropsType = {
 
 const Navbar = ({ logo, links, dropdowns }: NavbarPropsType) => {
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "10px 20px",
-        backgroundColor: "#333",
-        color: "white",
-      }}
-    >
+    <nav className="nav">
       <div>{logo}</div>
       <div style={{ display: "flex", alignItems: "center" }}>
         {links.map((link, index) => (
